@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5e128d32-4eab-4e49-8915-154de95c7ec7" name="Changes" comment="" />
+    <list default="true" id="5e128d32-4eab-4e49-8915-154de95c7ec7" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/nutritions/management/commands/telegram_bot.py" beforeDir="false" afterPath="$PROJECT_DIR$/nutritions/management/commands/telegram_bot.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -103,7 +105,7 @@
       <option name="presentableId" value="Default" />
       <updated>1731060327024</updated>
       <workItem from="1731060328393" duration="21703000" />
-      <workItem from="1731121207930" duration="11634000" />
+      <workItem from="1731121207930" duration="12995000" />
     </task>
     <servers />
   </component>

@@ -173,6 +173,7 @@ def process_password(msg, username):
         user_info = UserInfo.objects.get(user=user)
         if user_info.telegram_id != 0:
             bot.send_message(chat_id, "This account is already logged in another device.")
+            return 0
     except UserInfo.DoesNotExist:
         bot.reply_to(msg, "User does not exist.")
     if user is not None:
