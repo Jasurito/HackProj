@@ -32,12 +32,12 @@ def send_meal_message(chat_id, message_text):
     bot.send_message(chat_id, message_text)
 
 def send_breakfast():
-    for chat_id in logged_in_users.keys():
-        user_info = logged_in_users[chat_id]
+    for user_info in UserInfo.objects.all().values():
+        telegram_id = user_info['telegram_id']
         try:
-            schedule = UserSchedule.objects.get(user_info=user_info)
+            schedule = UserSchedule.objects.get(user_info=UserInfo.objects.get(telegram_id=telegram_id))
             message = f"Good morning! Here’s your breakfast:\n{schedule.monday_break}"
-            send_meal_message(chat_id, message)
+            send_meal_message(telegram_id, message)
         except UserSchedule.DoesNotExist:
             pass
 
@@ -64,7 +64,11 @@ def send_dinner():
 # Bot Command to Start the Bot
 @bot.message_handler(commands=['start'])
 def start(msg):
-    bot.reply_to(msg, "Hello! Type /login to log in to your account.")
+    chat_id = msg.chat.id
+    if UserInfo.objects.filter(telegram_id=chat_id).exists():
+        "Hello, wait for your Notifications"
+    else:
+        bot.reply_to(msg, "Hello! Type /login to log in to your account.")
 
 # Bot Command to Begin Login Process
 @bot.message_handler(commands=['login'])
@@ -93,11 +97,20 @@ def process_password(msg):
             user_info.save()
             logged_in_users[chat_id] = user_info  # Store UserInfo instance after successful login
             bot.reply_to(msg, "Login successful! You will now receive meal reminders.")
+            bot.send_message(msg.chat.id, "Enter what do you want to get for Monday Breakfast")
+            bot.register_next_step_handler(msg, breakfastConstruct)
         except UserInfo.DoesNotExist:
             bot.reply_to(msg, "User information not found.")
     else:
         bot.reply_to(msg, "Invalid username or password.")
         logged_in_users.pop(chat_id, None)  # Remove entry if login failed
+
+
+def breakfastConstruct(msg):
+    UserSchedule.objects.create(user_info=UserInfo.objects.get(telegram_id=msg.chat.id), monday_break=True)
+
+
+
 
 # Function to run the schedule in a separate thread
 def run_schedule():
@@ -111,7 +124,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
         # Schedule the tasks
-        schedule.every().day.at("08:00").do(send_breakfast)
+        schedule.every().day.at("08:48").do(send_breakfast)
         schedule.every().day.at("12:00").do(send_lunch)
         schedule.every().day.at("18:00").do(send_dinner)
 

@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 # First table: UserInfo model
 class UserInfo(models.Model):
-    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     telegram_id = models.IntegerField(default=0)
     name = models.CharField(max_length=100, default='NoName')
     age = models.IntegerField(default=0)

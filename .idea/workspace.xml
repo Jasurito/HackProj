@@ -5,21 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5e128d32-4eab-4e49-8915-154de95c7ec7" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/nutritions/management/commands/telegram_bot.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nutritions/templates/registration.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/HackProj.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/HackProj.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HackProj/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/HackProj/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HackProj/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/HackProj/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nutritions/templates/base.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/nutritions/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/nutritions/templates/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nutritions/templates/main_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/nutritions/templates/main_page.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nutritions/templates/pdf.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/nutritions/templates/recipe.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/nutritions/templates/register.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/nutritions/templates/update_recipe.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/nutritions/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/nutritions/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nutritions/management/commands/telegram_bot.py" beforeDir="false" afterPath="$PROJECT_DIR$/nutritions/management/commands/telegram_bot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nutritions/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/nutritions/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nutritions/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/nutritions/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,33 +29,33 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 1
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
   <component name="ProjectId" id="2oYxUWUDJGWA2CwrZOQY3bnqbYH" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Django Server.HackProj.executor": "Run",
-    "Python.telegram_bot.executor": "Run",
-    "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "D:/HackProject/HackProj/db.sqlite3",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "terminal",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Django Server.HackProj.executor&quot;: &quot;Run&quot;,
+    &quot;Python.telegram_bot.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenDjangoStructureViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/HackProject/HackProj/db.sqlite3&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;terminal&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\HackProject\HackProj\nutritions\management\commands\" />
@@ -118,6 +108,7 @@
       <option name="presentableId" value="Default" />
       <updated>1731060327024</updated>
       <workItem from="1731060328393" duration="21703000" />
+      <workItem from="1731121207930" duration="2742000" />
     </task>
     <servers />
   </component>

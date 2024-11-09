@@ -12,6 +12,7 @@ from django.contrib.auth import logout
 
 def main_page(request):
     if request.user.is_authenticated:
+        print(UserInfo.objects.all().values()[0]['telegram_id'])
         print(request.user.is_authenticated)
         print(request.user)
         print(request.user.id)
