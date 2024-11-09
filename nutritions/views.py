@@ -17,7 +17,7 @@ def main_page(request):
         print(request.user)
         print(request.user.id)
         print(UserInfo.objects.all())
-        user_info = UserInfo.objects.filter(user=request.user).values()
+        user_info = UserInfo.objects.get(user=User.objects.get(username=request.user))
         print(user_info)
         return render(request, "main_page.html", {'user_info': user_info})
     return render(request, "main_page.html", {'user_info': 'noinfo'})
@@ -44,6 +44,8 @@ def logout_page(request):
 
 
 def register_page(request):
+    if request.user.is_authenticated:
+        return redirect(main_page)
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -86,5 +88,30 @@ def info_gathering_page(request):
     return redirect(main_page)
 
 
+def settings_page(request):
+    if request.user.is_authenticated:
+        return render(request, 'settings_page.html')
+    return redirect(main_page)
+
+def edit_page(request):
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            name = request.POST.get('name')
+            age = request.POST.get('age')
+            weight = request.POST.get('weight')
+            height = request.POST.get('height')
+            gender = request.POST.get('gender')
+            if gender == 'Male':
+                gender = 1
+            elif gender == 'Female':
+                gender = 0
+            else:
+                messages.error(request, 'Gender must be "Male" or "Female"')
+            user_info = UserInfo.objects.filter(user=User.objects.get(username=request.user))
+            user_info.update(name=name, age=age, weight=weight, height=height, gender=gender)
+            user_info.save()
+            return redirect(main_page)
+        return render(request, "edit_page.html")
+    return redirect(main_page)
 
 

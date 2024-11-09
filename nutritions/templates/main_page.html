@@ -1,134 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Meal Planner</title>
-  <style>
-    /* Basic CSS styling for mobile responsiveness */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MealHarmony</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
 
-    body {
-      background-color: #f9f9f9;
-      color: #333;
-    }
+    <link rel="stylesheet" href="./style.css" />
 
-    .header {
-      background-color: #4CAF50;
-      color: white;
-      padding: 1em;
-      text-align: center;
-      font-size: 1.5em;
-    }
+    <style></style>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <nav class="navigation">
+          <div class="nav_items">
+            <div class="icon_wrapper">
+              <a href="./diet.html"><i class="fa-solid fa-basket-shopping"></i></a>
+            </div>
+            <div class="icon_wrapper">
+              <a href="/"><i class="fa-solid fa-house"></i></a>
+            </div>
+              {% if request.user.is_authenticated %}
+                  <div class="icon_wrapper">
+              <a href="settings/"><i class="fa-solid fa-gear"></i></a>
+            </div>
+              {% else %}
+                  <div class="icon_wrapper">
+              <a href="login/"><i class="fa-solid fa-user"></i></a>
+            </div>
 
-    .container {
-      padding: 1em;
-    }
-
-    .meal-day {
-      display: flex;
-      flex-direction: column;
-      gap: 1em;
-      margin-bottom: 2em;
-    }
-
-    .meal-section {
-      background-color: #fff;
-      padding: 1em;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    }
-
-    .meal-section h3 {
-      font-size: 1.2em;
-      margin-bottom: 0.5em;
-    }
-
-    .meal-items {
-      list-style-type: none;
-      font-size: 1em;
-      color: #555;
-    }
-
-    .nav-bar {
-      display: flex;
-      justify-content: space-around;
-      background-color: #333;
-      color: white;
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      padding: 0.5em 0;
-    }
-
-    .nav-bar a {
-      color: white;
-      text-decoration: none;
-      font-size: 1.2em;
-    }
-
-    .button {
-      display: inline-block;
-      background-color: #4CAF50;
-      color: white;
-      padding: 0.8em 1.2em;
-      border-radius: 8px;
-      text-align: center;
-      text-decoration: none;
-      font-size: 1em;
-      margin-top: 1em;
-      width: 100%;
-    }
-  </style>
-</head>
-<body>
-  <div class="header">
-    Meal Planner
-  </div>
-
-  <div class="container">
-    <!-- Daily meal sections -->
-    <div class="meal-day">
-      <div class="meal-section">
-        <h3>Breakfast</h3>
-        <ul class="meal-items">
-          <li>Oatmeal with fruits</li>
-          <li>Green smoothie</li>
-        </ul>
+              {% endif %}
+          </div>
+        </nav>
       </div>
+    </header>
 
-      <div class="meal-section">
-        <h3>Lunch</h3>
-        <ul class="meal-items">
-          <li>Grilled chicken salad</li>
-          <li>Brown rice</li>
-        </ul>
+    <main class="main">
+      <div class="container">
+        <div class="main_items">
+          <div class="main_items_wrapper">
+            <a class="main_items_wrapper_btn" href="???">Meal Plan</a>
+            <a class="main_items_wrapper_btn" href="????">Recipes</a>
+          </div>
+        </div>
       </div>
+    </main>
 
-      <div class="meal-section">
-        <h3>Dinner</h3>
-        <ul class="meal-items">
-          <li>Steamed vegetables</li>
-          <li>Quinoa bowl</li>
-        </ul>
-      </div>
-
-      <!-- Button to add a meal -->
-      <a href="#" class="button">Add Meal</a>
-    </div>
-  </div>
-
-  <!-- Navigation bar at the bottom -->
-  <div class="nav-bar">
-    <a href="#">Home</a>
-    <a href="#">Planner</a>
-    <a href="#">Recipes</a>
-    <a href="#">Settings</a>
-  </div>
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>
