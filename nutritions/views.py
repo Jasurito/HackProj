@@ -59,7 +59,28 @@ def register_page(request):
     return render(request, 'registration.html')
 
 
+# INFO GATHERING
+def info_gathering_page(request):
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            name = request.POST.get('name')
+            age = request.POST.get('age')
+            weight = request.POST.get('weight')
+            height = request.POST.get('height')
+            gender = request.POST.get('gender')
+            if gender == 'Male':
+                gender = 1
+            elif gender == 'Female':
+                gender = 0
+            else:
+                messages.error(request, 'Gender must be "Male" or "Female"')
+            user_info = UserInfo.objects.filter(user=User.objects.get(username=request.user))
+            user_info.update(name=name, age=age, weight=weight, height=height, gender=gender)
+            user_info.save()
+            return redirect("/mealPlan/", user_info)
+        return render(request, "info_gathering_page.html")
+    return redirect(main_page)
 
 
-
+def
 

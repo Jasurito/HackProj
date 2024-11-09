@@ -33,6 +33,8 @@ def send_meal_message(chat_id, message_text):
 
 def send_breakfast():
     for user_info in UserInfo.objects.all().values():
+        if user_info['telegram_id'] == 0:
+            pass
         telegram_id = user_info['telegram_id']
         try:
             schedule = UserSchedule.objects.get(user_info=UserInfo.objects.get(telegram_id=telegram_id))
@@ -43,6 +45,8 @@ def send_breakfast():
 
 def send_lunch():
     for user_info in UserInfo.objects.all().values():
+        if user_info['telegram_id'] == 0:
+            pass
         telegram_id = user_info['telegram_id']
         try:
             schedule = UserSchedule.objects.get(user_info=UserInfo.objects.get(telegram_id=telegram_id))
@@ -53,6 +57,8 @@ def send_lunch():
 
 def send_dinner():
     for user_info in UserInfo.objects.all().values():
+        if user_info['telegram_id'] == 0:
+            pass
         telegram_id = user_info['telegram_id']
         try:
             schedule = UserSchedule.objects.get(user_info=UserInfo.objects.get(telegram_id=telegram_id))
@@ -61,12 +67,20 @@ def send_dinner():
         except UserSchedule.DoesNotExist:
             pass
 
+
+def send_shopping_list():
+    for user_info in UserInfo.objects.all().values():
+        if user_info['telegram_id'] == 0:
+            pass
+        telegram_id = user_info['telegram_id']
+        #AI implementation needed
+
 # Bot Command to Start the Bot
 @bot.message_handler(commands=['start'])
 def start(msg):
     chat_id = msg.chat.id
     if UserInfo.objects.filter(telegram_id=chat_id).exists():
-        "Hello, wait for your Notifications"
+        bot.send_message(chat_id, "Hello, wait for your Notifications")
     else:
         bot.reply_to(msg, "Hello! Type /login to log in to your account.")
 
@@ -77,17 +91,26 @@ def login(msg):
     bot.reply_to(msg, "Enter Your Username:")
     bot.register_next_step_handler(msg, process_username)
 
+@bot.message_handler(commands=['logout'])
+def logout(msg):
+    user_info = UserInfo.objects.get(telegram_id=msg.chat.id)
+    if user_info['telegram_id'] != 0:
+        user_info['telegram_id'] = 0
+        user_info.save()
+        bot.reply_to(msg, "Logged Out!")
+    else:
+        bot.reply_to(msg, "You are not even logged in")
+
 def process_username(msg):
     chat_id = msg.chat.id
     username = msg.text
     logged_in_users[chat_id] = {'username':username}  # Temporarily store username
     bot.reply_to(msg, "Enter Your Password:")
-    bot.register_next_step_handler(msg, process_password)
+    bot.register_next_step_handler(msg, process_password, username)
 
-def process_password(msg):
+def process_password(msg, username):
     chat_id = msg.chat.id
     password = msg.text
-    username = logged_in_users[chat_id].get('username')
     # Authenticate user
     user = authenticate(username=username, password=password)
     if user is not None:
@@ -107,8 +130,7 @@ def process_password(msg):
 
 
 def breakfastConstruct(msg):
-    UserSchedule.objects.create(user_info=UserInfo.objects.get(telegram_id=msg.chat.id), monday_break=True)
-
+    UserSchedule.objects.create(user_info=UserInfo.objects.get(telegram_id=msg.chat.id))
 
 
 
@@ -124,9 +146,10 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
         # Schedule the tasks
-        schedule.every().day.at("08:48").do(send_breakfast)
+        schedule.every().day.at("08:00").do(send_breakfast)
         schedule.every().day.at("12:00").do(send_lunch)
         schedule.every().day.at("18:00").do(send_dinner)
+        schedule.every().week.at("8:30").do(send_shopping_list)
 
         # Start the schedule in a new thread
         schedule_thread = threading.Thread(target=run_schedule)

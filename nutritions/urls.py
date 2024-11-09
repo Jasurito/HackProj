@@ -3,7 +3,8 @@ from django.urls import path
 from nutritions import views
 
 urlpatterns = [
-    path('', views.main_page ),
+    path('', views.main_page, name='main_page' ),
     path('login/', views.login_page, name='login'),
     path('register/', views.register_page, name='register'),
+    path('userinfo/', views.info_gathering_page, name='userinfo'),
 ]
