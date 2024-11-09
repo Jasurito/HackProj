@@ -30,13 +30,16 @@
                 {% csrf_token %}
               <input type="email" placeholder="example@gmail.com" name="username"/>
               <input type="password" placeholder="Password" name="password"/>
-              <button type="submit">Log In</button>
+              <input type="password" placeholder="Confirm password" name="password_confirm"/>
+              <button type="submit">Sign In</button>
             </form>
           </div>
           <div class="register_main_items_login">
-            <p class="register_main_items_login_desc">Already have account?</p>
+            <p class="register_main_items_login_desc">
+              Already have an account?
+            </p>
             <a class="register_main_items_login_link" href="/login/"
-              >Sign In</a
+              >Log In</a
             >
           </div>
         </div>
