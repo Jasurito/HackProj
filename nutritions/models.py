@@ -11,6 +11,7 @@ class UserInfo(models.Model):
     weight = models.FloatField(default=0)
     height = models.FloatField(default=0)
     gender = models.CharField(default="NoInfo", max_length=10)
+    preference = models.IntegerField(default=0)
 
     def __str__(self):
         return self.name

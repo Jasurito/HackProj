@@ -12,13 +12,7 @@ from django.contrib.auth import logout
 
 def main_page(request):
     if request.user.is_authenticated:
-        print(UserInfo.objects.all().values()[0]['telegram_id'])
-        print(request.user.is_authenticated)
-        print(request.user)
-        print(request.user.id)
-        print(UserInfo.objects.all())
         user_info = UserInfo.objects.get(user=User.objects.get(username=request.user))
-        print(user_info)
         return render(request, "main_page.html", {'user_info': user_info})
     return render(request, "main_page.html", {'user_info': 'noinfo'})
 
@@ -73,11 +67,13 @@ def info_gathering_page(request):
             weight = request.POST.get('weight')
             height = request.POST.get('height')
             gender = request.POST.get('gender')
+            preference = request.POST.get('preference')
             user_info = UserInfo.objects.get(user=User.objects.get(username=request.user))
             user_info.age = age
             user_info.weight = weight
             user_info.height = height
             user_info.gender = gender
+            user_info.preference = preference
             user_info.save()
             return redirect(main_page)
         return render(request, "info_gathering_page.html")
@@ -97,11 +93,13 @@ def edit_page(request):
             weight = request.POST.get('weight')
             height = request.POST.get('height')
             gender = request.POST.get('gender')
+            preference = request.POST.get('preference')
             user_info = UserInfo.objects.get(user=User.objects.get(username=request.user))
             user_info.age = age
             user_info.weight = weight
             user_info.height = height
             user_info.gender = gender
+            user_info.preference = preference
             user_info.save()
             return redirect(main_page)
         return render(request, "edit_page.html")
@@ -115,4 +113,7 @@ def disableNotifications(request):
         return redirect(settings_page)
     return redirect(main_page)
 
+def generated_mealPlan_page(request):
+    if request.user.is_authenticated:
+        user_info = UserInfo.objects.get(user=User.objects.get(username=request.user))
 
