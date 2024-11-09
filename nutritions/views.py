@@ -77,10 +77,10 @@ def info_gathering_page(request):
             user_info = UserInfo.objects.filter(user=User.objects.get(username=request.user))
             user_info.update(name=name, age=age, weight=weight, height=height, gender=gender)
             user_info.save()
-            return redirect("/mealPlan/", user_info)
+            return redirect(main_page)
         return render(request, "info_gathering_page.html")
     return redirect(main_page)
 
 
-def
+
 

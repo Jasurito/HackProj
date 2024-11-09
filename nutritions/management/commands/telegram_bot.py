@@ -121,7 +121,7 @@ def process_password(msg, username):
             logged_in_users[chat_id] = user_info  # Store UserInfo instance after successful login
             bot.reply_to(msg, "Login successful! You will now receive meal reminders.")
             bot.send_message(msg.chat.id, "Enter what do you want to get for Monday Breakfast")
-            bot.register_next_step_handler(msg, breakfastConstruct)
+            bot.register_next_step_handler(msg, breakfastConstruct, user_info)
         except UserInfo.DoesNotExist:
             bot.reply_to(msg, "User information not found.")
     else:
@@ -129,8 +129,8 @@ def process_password(msg, username):
         logged_in_users.pop(chat_id, None)  # Remove entry if login failed
 
 
-def breakfastConstruct(msg):
-    UserSchedule.objects.create(user_info=UserInfo.objects.get(telegram_id=msg.chat.id))
+def breakfastConstruct(msg, user_info):
+    user_info.update(monday_break=msg.text)
 
 
 
