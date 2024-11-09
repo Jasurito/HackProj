@@ -150,8 +150,8 @@ def login(msg):
 @bot.message_handler(commands=['logout'])
 def logout(msg):
     user_info = UserInfo.objects.get(telegram_id=msg.chat.id)
-    if user_info['telegram_id'] != 0:
-        user_info['telegram_id'] = 0
+    if user_info.telegram_id != 0:
+        user_info.telegram_id = 0
         user_info.save()
         bot.reply_to(msg, "Logged Out!")
     else:
@@ -171,7 +171,7 @@ def process_password(msg, username):
     user = authenticate(username=username, password=password)
     try:
         user_info = UserInfo.objects.get(user=user)
-        if user_info['telegram_id'] != 0:
+        if user_info.telegram_id != 0:
             bot.send_message(chat_id, "This account is already logged in another device.")
     except UserInfo.DoesNotExist:
         bot.reply_to(msg, "User does not exist.")
