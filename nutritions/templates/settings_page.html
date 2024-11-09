@@ -53,22 +53,24 @@
             <p class="profile_gender">
               Gender: {{ user_info.gender }}<span id="genderDisplay"></span>
             </p>
+<p class="profile_preference">
 {% if user_info.preference == "-2" %}
-              <p class="profile_preference">
+
               Your preference: Weight Loss <span id="preferenceDisplay"></span>
-            </p>
+
               {% elif user_info.preference == "0" %}
-              <p class="profile_preference">
+
               Your preference: Health Maintenance <span id="preferenceDisplay"></span>
-            </p>
+
               {% elif user_info.preference == "1" %}
-              <p class="profile_preference">
+
               Your preference: Weight Gain <span id="preferenceDisplay"></span>
-            </p>
+
               {% else %}
               what
-              {% endif %}
 
+              {% endif %}
+</p>
           </div>
           <div class="profile_btn">
             <a href="/edit/" class="edit_btn" id="editData">Edit Data</a>

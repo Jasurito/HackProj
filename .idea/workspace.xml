@@ -6,17 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="5e128d32-4eab-4e49-8915-154de95c7ec7" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nutritions/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/nutritions/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/nutritions/static/nutritions/profile.css" beforeDir="false" afterPath="$PROJECT_DIR$/nutritions/static/nutritions/profile.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/nutritions/static/nutritions/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/nutritions/static/nutritions/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nutritions/templates/edit_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/nutritions/templates/edit_page.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nutritions/templates/info_gathering_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/nutritions/templates/info_gathering_page.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nutritions/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/nutritions/templates/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nutritions/templates/main_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/nutritions/templates/main_page.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nutritions/templates/registration.html" beforeDir="false" afterPath="$PROJECT_DIR$/nutritions/templates/registration.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/nutritions/templates/settings_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/nutritions/templates/settings_page.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nutritions/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/nutritions/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,7 +109,7 @@
       <option name="presentableId" value="Default" />
       <updated>1731060327024</updated>
       <workItem from="1731060328393" duration="21703000" />
-      <workItem from="1731121207930" duration="32516000" />
+      <workItem from="1731121207930" duration="34216000" />
     </task>
     <servers />
   </component>
