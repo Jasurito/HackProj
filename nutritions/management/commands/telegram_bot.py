@@ -42,22 +42,22 @@ def send_breakfast():
             pass
 
 def send_lunch():
-    for chat_id in logged_in_users.keys():
-        user_info = logged_in_users[chat_id]
+    for user_info in UserInfo.objects.all().values():
+        telegram_id = user_info['telegram_id']
         try:
-            schedule = UserSchedule.objects.get(user_info=user_info)
-            message = f"Lunchtime! Here’s your lunch:\n{schedule.monday_lunch}"
-            send_meal_message(chat_id, message)
+            schedule = UserSchedule.objects.get(user_info=UserInfo.objects.get(telegram_id=telegram_id))
+            message = f"Good morning! Here’s your breakfast:\n{schedule.monday_lunch}"
+            send_meal_message(telegram_id, message)
         except UserSchedule.DoesNotExist:
             pass
 
 def send_dinner():
-    for chat_id in logged_in_users.keys():
-        user_info = logged_in_users[chat_id]
+    for user_info in UserInfo.objects.all().values():
+        telegram_id = user_info['telegram_id']
         try:
-            schedule = UserSchedule.objects.get(user_info=user_info)
-            message = f"Dinner time! Here’s your dinner:\n{schedule.monday_dinner}"
-            send_meal_message(chat_id, message)
+            schedule = UserSchedule.objects.get(user_info=UserInfo.objects.get(telegram_id=telegram_id))
+            message = f"Good morning! Here’s your breakfast:\n{schedule.monday_dinner}"
+            send_meal_message(telegram_id, message)
         except UserSchedule.DoesNotExist:
             pass
 
