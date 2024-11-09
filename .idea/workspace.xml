@@ -1,11 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="5e128d32-4eab-4e49-8915-154de95c7ec7" name="Changes" comment="" />
+    <list default="true" id="5e128d32-4eab-4e49-8915-154de95c7ec7" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/nutritions/management/commands/telegram_bot.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/nutritions/templates/registration.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/HackProj.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/HackProj.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HackProj/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/HackProj/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HackProj/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/HackProj/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nutritions/templates/base.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nutritions/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/nutritions/templates/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nutritions/templates/main_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/nutritions/templates/main_page.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nutritions/templates/pdf.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nutritions/templates/recipe.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nutritions/templates/register.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nutritions/templates/update_recipe.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nutritions/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/nutritions/urls.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectColorInfo"><![CDATA[{
   "associatedIndex": 1
@@ -18,11 +50,57 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Django Server.HackProj.executor": "Run",
+    "Python.telegram_bot.executor": "Run",
+    "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "D:/HackProject/HackProj/db.sqlite3",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "terminal",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\HackProject\HackProj\nutritions\management\commands\" />
+      <recent name="D:\HackProject\HackProj\nutritions\management\commands" />
+      <recent name="D:\HackProject\HackProj" />
+      <recent name="D:\HackProject\HackProj\nutritions\templates" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="HackProj" type="Python.DjangoServer" factoryName="Django server">
+      <module name="HackProj" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="DJANGO_SETTINGS_MODULE" value="HackProj.settings" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="localhost" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
+      <method v="2" />
+    </configuration>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -39,8 +117,14 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1731060327024</updated>
-      <workItem from="1731060328393" duration="15000" />
+      <workItem from="1731060328393" duration="21703000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/HackProj$telegram_bot.coverage" NAME="telegram_bot Coverage Results" MODIFIED="1731091177046" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/nutritions/management/commands" />
   </component>
 </project>

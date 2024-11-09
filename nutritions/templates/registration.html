@@ -3,24 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Register</title>
 </head>
 <body>
-    <h2>Login</h2>
+    <h2>Register</h2>
     {% if messages %}
         {% for message in messages %}
             <p style="color: red;">{{ message }}</p>
         {% endfor %}
     {% endif %}
-    <form method="post" action="{% url 'login' %}">
+    <form method="post" action="{% url 'register' %}">
         {% csrf_token %}
         <label for="username">Username:</label>
         <input type="text" name="username" id="username" required><br><br>
         <label for="password">Password:</label>
         <input type="password" name="password" id="password" required><br><br>
-        <button type="submit">Login</button>
+        <label for="password_confirm">Confirm Password:</label>
+        <input type="password" name="password_confirm" id="password_confirm" required><br><br>
+        <button type="submit">Register</button>
     </form>
-<p  ><a href="{% url 'register' %}" >Create an
-                    Account.</a></p>
+<p  ><a href="{% url 'login' %}" >Have an account? Log in</a></p>
 </body>
 </html>
