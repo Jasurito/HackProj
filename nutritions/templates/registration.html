@@ -1,27 +1,46 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
-</head>
-<body>
-    <h2>Register</h2>
-    {% if messages %}
-        {% for message in messages %}
-            <p style="color: red;">{{ message }}</p>
-        {% endfor %}
-    {% endif %}
-    <form method="post" action="{% url 'register' %}">
-        {% csrf_token %}
-        <label for="username">Username:</label>
-        <input type="text" name="username" id="username" required><br><br>
-        <label for="password">Password:</label>
-        <input type="password" name="password" id="password" required><br><br>
-        <label for="password_confirm">Confirm Password:</label>
-        <input type="password" name="password_confirm" id="password_confirm" required><br><br>
-        <button type="submit">Register</button>
-    </form>
-<p  ><a href="{% url 'login' %}" >Have an account? Log in</a></p>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <link rel="stylesheet" href="{% static 'nutritions/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'nutritions/register.css' %}" />
+  </head>
+  <body>
+    <main class="register_main">
+      <div class="register_main_items">
+        <div class="register_main_items_img">
+          <img src="./image.jpeg" alt="" />
+        </div>
+        <div class="wrapper">
+          <div class="register_main_items_signin">
+            <form action="/register/" method="post">
+                {% csrf_token %}
+              <input type="email" placeholder="example@gmail.com" name="username"/>
+              <input type="password" placeholder="Password" name="password"/>
+              <button type="submit">Log In</button>
+            </form>
+          </div>
+          <div class="register_main_items_login">
+            <p class="register_main_items_login_desc">Already have account?</p>
+            <a class="register_main_items_login_link" href="/login/"
+              >Sign In</a
+            >
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
 </html>

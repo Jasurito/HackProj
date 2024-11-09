@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -13,8 +14,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-
-    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="{% static 'nutritions/style.css' %}" />
 
     <style></style>
   </head>
@@ -48,13 +48,11 @@
       <div class="container">
         <div class="main_items">
           <div class="main_items_wrapper">
-            <a class="main_items_wrapper_btn" href="???">Meal Plan</a>
+            <a class="main_items_wrapper_btn" href="userinfo/">Meal Plan</a>
             <a class="main_items_wrapper_btn" href="????">Recipes</a>
           </div>
         </div>
       </div>
     </main>
-
-    <script src="script.js"></script>
   </body>
 </html>

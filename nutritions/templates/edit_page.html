@@ -1,10 +1,11 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Edit Profile</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="{% static 'nutritions/style.css' %}" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
@@ -12,7 +13,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <link rel="stylesheet" href="edit.css" />
+    <link rel="stylesheet" href="{% static 'nutritions/edit.css' %}" />
   </head>
   <body>
     <header>
@@ -25,9 +26,15 @@
             <div class="icon_wrapper">
               <a href="/"><i class="fa-solid fa-house"></i></a>
             </div>
-              <div class="icon_wrapper">
-              <a href="settings/"><i class="fa-solid fa-gear"></i></a>
+              {% if request.user.is_authenticated %}
+                  <div class="icon_wrapper">
+              <a href="/settings/"><i class="fa-solid fa-gear"></i></a>
             </div>
+              {% else %}
+                  <div class="icon_wrapper">
+              <a href="/login/"><i class="fa-solid fa-user"></i></a>
+            </div>
+              {% endif %}
           </div>
         </nav>
       </div>
@@ -37,7 +44,8 @@
       <div class="container">
         <div class="main_plan_modal">
           <h2 class="main_plan_modal_head">Edit your Profile</h2>
-          <form action="edit/" method="post">
+          <form action="/edit/" method="post">
+              {% csrf_token %}
             <div class="weight_wrapper">
               <label for="weight">Enter your weight</label>
               <input type="text" placeholder="80kg" id="weight" name="weight" />
@@ -48,11 +56,11 @@
             </div>
             <div class="gender_wrapper">
               <label class="gender_wrapper_check">
-                <input type="radio" name="gender" />
+                <input type="radio" name="gender" value="Male"/>
                 <span>Male</span>
               </label>
               <label class="gender_wrapper_check">
-                <input type="radio" name="gender" />
+                <input type="radio" name="gender" value="Female"/>
                 <span>Female</span>
               </label>
             </div>

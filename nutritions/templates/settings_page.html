@@ -1,10 +1,11 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Profile</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="{% static 'nutritions/style.css' %}" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
@@ -12,7 +13,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <link rel="stylesheet" href="profile.css" />
+    <link rel="stylesheet" href="{% static 'nutritions/profile.css' %}" />
   </head>
   <body>
     <header>
@@ -23,15 +24,15 @@
               <a href="./diet.html"><i class="fa-solid fa-basket-shopping"></i></a>
             </div>
             <div class="icon_wrapper">
-              <a href="./index.html"><i class="fa-solid fa-house"></i></a>
+              <a href="/"><i class="fa-solid fa-house"></i></a>
             </div>
               {% if request.user.is_authenticated %}
               <div class="icon_wrapper">
-              <a href="./profile.html"><i class="fa-solid fa-gear"></i></a>
+              <a href="/settings/"><i class="fa-solid fa-gear"></i></a>
             </div>
               {% else %}
             <div class="icon_wrapper">
-              <a href="./profile.html"><i class="fa-solid fa-user"></i></a>
+              <a href="/login/"><i class="fa-solid fa-user"></i></a>
             </div> {% endif %}
           </div>
         </nav>
@@ -43,29 +44,33 @@
           <div class="profile_info">
             <h2 class="profile_head">Your Profile</h2>
             <p class="profile_weight">
-              Weight: <span id="weightDisplay"></span>
+              Weight: {{ user_info.weight }} <span id="weightDisplay"></span>
             </p>
             <p class="profile_height">
-              Height: <span id="heightDisplay"></span>
+              Height: {{ user_info.height }} <span id="heightDisplay"></span>
             </p>
-            <p class="profile_age">Age: <span id="ageDisplay"></span></p>
+            <p class="profile_age">Age: {{ user_info.age }}<span id="ageDisplay"></span></p>
             <p class="profile_gender">
-              Gender: <span id="genderDisplay"></span>
+              Gender: {{ user_info.gender }}<span id="genderDisplay"></span>
             </p>
           </div>
           <div class="profile_btn">
-            <a class="edit_btn" id="editData">Edit Data</a>
-            <a class="logout_btn" id="logout">Log Out</a>
-            <a class="notification_btn" id="notificationOn"
-              ><i class="fa-solid fa-bell"></i
-            ></a>
-            <a class="notification_btn" id="notificationOff"
-              ><i class="fa-solid fa-bell-slash"></i
-            ></a>
+            <a href="/edit/" class="edit_btn" id="editData">Edit Data</a>
+            <a href="/logout/" class="logout_btn" id="logout">Log Out</a>
+
+
+              {% if user_info.telegram_id != 0 %}
+                  <a href="disablenotifications/" class="notification_btn" id="notificationOff"><i class="fa-solid fa-bell-slash"></i></a>
+
+              {% else %}
+                  <a href="https://t.me/meal_planner_uzbot" class="notification_btn" id="notificationOn"
+              ><i class="fa-solid fa-bell"></i></a>
+              {% endif %}
+
           </div>
         </div>
       </div>
     </main>
-    <script src="profile.js"></script>
+    <script src="{% static 'nutritions/profile.js' %}"></script>
   </body>
 </html>

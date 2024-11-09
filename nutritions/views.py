@@ -69,19 +69,15 @@ def register_page(request):
 def info_gathering_page(request):
     if request.user.is_authenticated:
         if request.method == 'POST':
-            name = request.POST.get('name')
             age = request.POST.get('age')
             weight = request.POST.get('weight')
             height = request.POST.get('height')
             gender = request.POST.get('gender')
-            if gender == 'Male':
-                gender = 1
-            elif gender == 'Female':
-                gender = 0
-            else:
-                messages.error(request, 'Gender must be "Male" or "Female"')
-            user_info = UserInfo.objects.filter(user=User.objects.get(username=request.user))
-            user_info.update(name=name, age=age, weight=weight, height=height, gender=gender)
+            user_info = UserInfo.objects.get(user=User.objects.get(username=request.user))
+            user_info.age = age
+            user_info.weight = weight
+            user_info.height = height
+            user_info.gender = gender
             user_info.save()
             return redirect(main_page)
         return render(request, "info_gathering_page.html")
@@ -90,28 +86,33 @@ def info_gathering_page(request):
 
 def settings_page(request):
     if request.user.is_authenticated:
-        return render(request, 'settings_page.html')
+        user_info = UserInfo.objects.get(user=User.objects.get(username=request.user))
+        return render(request, 'settings_page.html', {'user_info':user_info})
     return redirect(main_page)
 
 def edit_page(request):
     if request.user.is_authenticated:
         if request.method == 'POST':
-            name = request.POST.get('name')
             age = request.POST.get('age')
             weight = request.POST.get('weight')
             height = request.POST.get('height')
             gender = request.POST.get('gender')
-            if gender == 'Male':
-                gender = 1
-            elif gender == 'Female':
-                gender = 0
-            else:
-                messages.error(request, 'Gender must be "Male" or "Female"')
-            user_info = UserInfo.objects.filter(user=User.objects.get(username=request.user))
-            user_info.update(name=name, age=age, weight=weight, height=height, gender=gender)
+            user_info = UserInfo.objects.get(user=User.objects.get(username=request.user))
+            user_info.age = age
+            user_info.weight = weight
+            user_info.height = height
+            user_info.gender = gender
             user_info.save()
             return redirect(main_page)
         return render(request, "edit_page.html")
+    return redirect(main_page)
+
+def disableNotifications(request):
+    if request.user.is_authenticated:
+        user_info = UserInfo.objects.get(user=User.objects.get(username=request.user))
+        user_info.telegram_id = 0
+        user_info.save()
+        return redirect(settings_page)
     return redirect(main_page)
 
 

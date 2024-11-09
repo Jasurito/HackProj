@@ -10,7 +10,7 @@ class UserInfo(models.Model):
     age = models.IntegerField(default=0)
     weight = models.FloatField(default=0)
     height = models.FloatField(default=0)
-    gender = models.IntegerField(default=0)  # 1 is male, 0 is female
+    gender = models.CharField(default="NoInfo", max_length=10)
 
     def __str__(self):
         return self.name
