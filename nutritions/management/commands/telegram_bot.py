@@ -21,6 +21,10 @@ bot = telebot.TeleBot(API_KEY, parse_mode=None)
 # Dictionary to temporarily store logged-in users' data
 logged_in_users = {}
 
+def day_set(telegram_id, daytime):
+    schedule = UserSchedule.objects.get(user_info=UserInfo.objects.get(telegram_id=telegram_id))
+
+
 def User_Object(username):
     user = User.objects.get(username=username)
     user1 = UserInfo.objects.get(user=user)
@@ -50,7 +54,7 @@ def send_lunch():
         telegram_id = user_info['telegram_id']
         try:
             schedule = UserSchedule.objects.get(user_info=UserInfo.objects.get(telegram_id=telegram_id))
-            message = f"Good morning! Here’s your breakfast:\n{schedule.monday_lunch}"
+            message = f"Good afternoon! Here’s your lunch:\n{schedule.monday_lunch}"
             send_meal_message(telegram_id, message)
         except UserSchedule.DoesNotExist:
             pass
@@ -62,7 +66,7 @@ def send_dinner():
         telegram_id = user_info['telegram_id']
         try:
             schedule = UserSchedule.objects.get(user_info=UserInfo.objects.get(telegram_id=telegram_id))
-            message = f"Good morning! Here’s your breakfast:\n{schedule.monday_dinner}"
+            message = f"Good evening! Here’s your dinner:\n{schedule.monday_dinner}"
             send_meal_message(telegram_id, message)
         except UserSchedule.DoesNotExist:
             pass
@@ -87,6 +91,8 @@ def start(msg):
 # Bot Command to Begin Login Process
 @bot.message_handler(commands=['login'])
 def login(msg):
+    if UserInfo.objects.filter(telegram_id=msg.chat.id).exists():
+        bot.send_message(chat_id, "You are already logged in.")
     chat_id = msg.chat.id
     bot.reply_to(msg, "Enter Your Username:")
     bot.register_next_step_handler(msg, process_username)
@@ -149,7 +155,7 @@ class Command(BaseCommand):
         schedule.every().day.at("08:00").do(send_breakfast)
         schedule.every().day.at("12:00").do(send_lunch)
         schedule.every().day.at("18:00").do(send_dinner)
-        schedule.every().week.at("8:30").do(send_shopping_list)
+        schedule.every().monday.at("8:30").do(send_shopping_list)
 
         # Start the schedule in a new thread
         schedule_thread = threading.Thread(target=run_schedule)
