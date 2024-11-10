@@ -9,6 +9,16 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth import logout
 import sqlite3
+from django.http import JsonResponse
+import json
+
+
+def telegram_webhook(request):
+    if request.method == "POST":
+        data = json.loads(request.body)
+        # Process your bot's message here
+        return JsonResponse({"status": "success"})
+    return JsonResponse({"status": "failure"}, status=400)
 
 def main_page(request):
     if request.user.is_authenticated:
