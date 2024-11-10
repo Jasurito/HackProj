@@ -5,11 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5e128d32-4eab-4e49-8915-154de95c7ec7" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vercel.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HackProj/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/HackProj/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HackProj/wsgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/HackProj/wsgi.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nutritions/management/commands/telegram_bot.py" beforeDir="false" afterPath="$PROJECT_DIR$/nutritions/management/commands/telegram_bot.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,7 +108,7 @@
       <updated>1731060327024</updated>
       <workItem from="1731060328393" duration="21703000" />
       <workItem from="1731121207930" duration="34484000" />
-      <workItem from="1731212226647" duration="11278000" />
+      <workItem from="1731212226647" duration="11460000" />
     </task>
     <servers />
   </component>
