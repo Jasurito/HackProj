@@ -15,5 +15,4 @@ urlpatterns = [
     path('settings/disablenotifications/', views.disableNotifications, name='disablenotifications'),
     path('mealPage/', views.meal_plan_page, name='meal_plan'),
     path('mealPageGeneration/', views.generated_mealPlan_page, name='generated_meal_plan'),
-    path('webhook/', telegram_webhook, name='telegram_webhook'),
 ]

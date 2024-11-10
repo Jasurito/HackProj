@@ -13,13 +13,6 @@ from django.http import JsonResponse
 import json
 
 
-def telegram_webhook(request):
-    if request.method == "POST":
-        data = json.loads(request.body)
-        # Process your bot's message here
-        return JsonResponse({"status": "success"})
-    return JsonResponse({"status": "failure"}, status=400)
-
 def main_page(request):
     if request.user.is_authenticated:
         user_info = UserInfo.objects.get(user=User.objects.get(username=request.user))

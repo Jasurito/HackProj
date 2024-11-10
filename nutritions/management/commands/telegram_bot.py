@@ -8,6 +8,7 @@ import datetime
 from datetime import datetime
 from django.core.management.base import BaseCommand
 from django.contrib.auth import authenticate
+import requests
 
 
 # Set up Django settings
@@ -15,6 +16,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'HackProj.settings')
 django.setup()
 
 from nutritions.models import User, UserInfo, UserSchedule
+
 
 API_KEY = '7830840669:AAF69IRMrusjVQuKssAjAmQCnPUD1seG1g0'
 bot = telebot.TeleBot(API_KEY, parse_mode=None)
