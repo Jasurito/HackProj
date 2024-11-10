@@ -8,12 +8,16 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth import logout
-
+import sqlite3
 
 def main_page(request):
     if request.user.is_authenticated:
         user_info = UserInfo.objects.get(user=User.objects.get(username=request.user))
-        return render(request, "main_page.html", {'user_info': user_info})
+        user_schedule = UserSchedule.objects.filter(user_info=user_info)
+        if user_schedule.exists():
+            return render(request, "main_page.html", {'user_info': user_info, "user_schedule": UserSchedule.objects.get(user_info=user_info)})
+        else:
+            return render(request, "main_page.html", {'user_info': user_info, "user_schedule": 0})
     return render(request, "main_page.html", {'user_info': 'noinfo'})
 
 def login_page(request):
@@ -58,6 +62,53 @@ def register_page(request):
 
     return render(request, 'registration.html')
 
+def calculate_BMR(age, weight, height, gender,prefference):
+    # Connect to the SQLite database
+    conn = sqlite3.connect('meals.sqlite3')
+    cursor = conn.cursor()
+
+    # Query to get calories from the breakfast table
+    cursor.execute("SELECT CalorieValue FROM breakfast")
+    # Fetch all results and store them in a list
+    calories_list = [row[0] for row in cursor.fetchall()]
+    if gender == 1:  # Male
+
+        BMR = (10 * weight + 6.25 * height - 5 * age + 5) * 0.45+prefference*315
+    else:  # Female
+        BMR = (10 * weight + 6.25 * height - 5 * age - 161) * 0.45+prefference*315
+
+    # Find the closest calorie value
+    closest_calories = min(calories_list, key=lambda x: abs(x - BMR))
+
+    # Query to get the ID where the CalorieValue is closest to BMR
+    cursor.execute("SELECT ID FROM breakfast WHERE CalorieValue = ?", (closest_calories,))
+    row_uni = cursor.fetchone()  # Fetch the first matching row
+    if row_uni:
+        ID = row_uni[0]  # ID of the corresponding row
+    else:
+        return []  # Return empty if no matching calorie value
+
+    # List to store results
+    result_list = []
+
+    # Fetch Option1, Option2, and Option3 from each meal table in sequence
+    for option in range(1, 4):  # Option1, Option2, Option3
+        for meal in ['breakfast', 'lunch', 'dinner']:
+            cursor.execute(f"SELECT Option{option} FROM {meal} WHERE ID = ?", (ID,))
+            option_value = cursor.fetchone()
+            if option_value:
+                result_list.append(option_value[0])
+    # Append the actual value
+    # Check if the result list is not empty
+    if result_list:
+        # Repeat the first 9 elements until the list reaches 21 elements
+        while len(result_list) < 21:
+            result_list.extend(result_list[:9])  # Append the first 9 elements
+
+        # Trim the list to exactly 21 elements in case it exceeds
+        result_list = result_list[:21]
+    conn.close()
+    return result_list
 
 # INFO GATHERING
 def info_gathering_page(request):
@@ -101,7 +152,7 @@ def edit_page(request):
             user_info.gender = gender
             user_info.preference = preference
             user_info.save()
-            return redirect(main_page)
+            return redirect('/mealPageGeneration/')
         return render(request, "edit_page.html")
     return redirect(main_page)
 
@@ -116,4 +167,70 @@ def disableNotifications(request):
 def generated_mealPlan_page(request):
     if request.user.is_authenticated:
         user_info = UserInfo.objects.get(user=User.objects.get(username=request.user))
+        user_schedule = UserSchedule.objects.filter(user_info=user_info)
+        gender = user_info.gender
+        age = user_info.age
+        weight = user_info.weight
+        height = user_info.height
+        preference = int(user_info.preference)
+        result = calculate_BMR(age, weight, height, gender, preference)
+        if user_schedule.exists():
+            UserSchedule.objects.update(user_info=user_info,
+                                    monday_break=result[0],
+                                    monday_lunch=result[1],
+                                    monday_dinner=result[2],
+                                    tuesday_break=result[3],
+                                    tuesday_lunch=result[4],
+                                    tuesday_dinner=result[5],
+                                    wednesday_break=result[6],
+                                    wednesday_lunch=result[7],
+                                    wednesday_dinner=result[8],
+                                    thursday_break=result[9],
+                                    thursday_lunch=result[10],
+                                    thursday_dinner=result[11],
+                                    friday_break=result[12],
+                                    friday_lunch=result[13],
+                                    friday_dinner=result[14],
+                                    saturday_break=result[15],
+                                    saturday_lunch=result[16],
+                                    saturday_dinner=result[17],
+                                    sunday_break=result[18],
+                                    sunday_lunch=result[19],
+                                    sunday_dinner=result[20])
+        else:
+            UserSchedule.objects.create(user_info=user_info,
+                                    monday_break=result[0],
+                                    monday_lunch=result[1],
+                                    monday_dinner=result[2],
+                                    tuesday_break=result[3],
+                                    tuesday_lunch=result[4],
+                                    tuesday_dinner=result[5],
+                                    wednesday_break=result[6],
+                                    wednesday_lunch=result[7],
+                                    wednesday_dinner=result[8],
+                                    thursday_break=result[9],
+                                    thursday_lunch=result[10],
+                                    thursday_dinner=result[11],
+                                    friday_break=result[12],
+                                    friday_lunch=result[13],
+                                    friday_dinner=result[14],
+                                    saturday_break=result[15],
+                                    saturday_lunch=result[16],
+                                    saturday_dinner=result[17],
+                                    sunday_break=result[18],
+                                    sunday_lunch=result[19],
+                                    sunday_dinner=result[20]).save()
+        return redirect('/mealPage/')
+    return redirect('/login/')
+
+def meal_plan_page(request):
+    if request.user.is_authenticated:
+        user_info = UserInfo.objects.get(user=User.objects.get(username=request.user))
+        user_schedule = UserSchedule.objects.filter(user_info=user_info)
+        if user_schedule.exists():
+            return render(request, 'meal_plan.html', {"user_schedule": UserSchedule.objects.get(user_info=user_info)})
+        else:
+            return redirect('/mealPlanGeneration/')
+    return redirect('/login/')
+
 

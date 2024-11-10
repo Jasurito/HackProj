@@ -1,3 +1,5 @@
+from tkinter.font import names
+
 from django.contrib import admin
 from django.urls import path
 from nutritions import views
@@ -11,4 +13,6 @@ urlpatterns = [
     path('settings/', views.settings_page, name='settings'),
     path('edit/', views.edit_page, name='edit'),
     path('settings/disablenotifications/', views.disableNotifications, name='disablenotifications'),
+    path('mealPage/', views.meal_plan_page, name='meal_plan'),
+    path('mealPageGeneration/', views.generated_mealPlan_page, name='generated_meal_plan'),
 ]
