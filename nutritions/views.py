@@ -126,7 +126,7 @@ def info_gathering_page(request):
             user_info.gender = gender
             user_info.preference = preference
             user_info.save()
-            return redirect(main_page)
+            return redirect('/mealPageGeneration/')
         return render(request, "info_gathering_page.html")
     return redirect(main_page)
 
@@ -175,6 +175,30 @@ def generated_mealPlan_page(request):
         preference = int(user_info.preference)
         result = calculate_BMR(age, weight, height, gender, preference)
         if user_schedule.exists():
+            user_schedule = UserSchedule.objects.get(user_info=user_info)
+            user_schedule.monday_break=result[0]
+            user_schedule.monday_lunch=result[1],
+            user_schedule.monday_dinner=result[2],
+            user_schedule.tuesday_break=result[3],
+            user_schedule.tuesday_lunch=result[4],
+            user_schedule.tuesday_dinner=result[5],
+            user_schedule.wednesday_break=result[6],
+            user_schedule.wednesday_lunch=result[7],
+            user_schedule.wednesday_dinner=result[8],
+            user_schedule.thursday_break=result[9],
+            user_schedule.thursday_lunch=result[10],
+            user_schedule.thursday_dinner=result[11],
+            user_schedule.friday_break=result[12],
+            user_schedule.friday_lunch=result[13],
+            user_schedule.friday_dinner=result[14],
+            user_schedule.saturday_break=result[15],
+            user_schedule.saturday_lunch=result[16],
+            user_schedule.saturday_dinner=result[17],
+            user_schedule.sunday_break=result[18],
+            user_schedule.sunday_lunch=result[19],
+            user_schedule.sunday_dinner=result[20]
+            user_schedule.save()
+            '''
             UserSchedule.objects.update(user_info=user_info,
                                     monday_break=result[0],
                                     monday_lunch=result[1],
@@ -196,7 +220,7 @@ def generated_mealPlan_page(request):
                                     saturday_dinner=result[17],
                                     sunday_break=result[18],
                                     sunday_lunch=result[19],
-                                    sunday_dinner=result[20])
+                                    sunday_dinner=result[20])'''
         else:
             UserSchedule.objects.create(user_info=user_info,
                                     monday_break=result[0],
@@ -230,7 +254,7 @@ def meal_plan_page(request):
         if user_schedule.exists():
             return render(request, 'meal_plan.html', {"user_schedule": UserSchedule.objects.get(user_info=user_info)})
         else:
-            return redirect('/mealPlanGeneration/')
+            return redirect('/mealPageGeneration/')
     return redirect('/login/')
 
 

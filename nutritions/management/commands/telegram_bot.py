@@ -78,8 +78,6 @@ def send_breakfast():
             pass
         telegram_id = user_info['telegram_id']
         try:
-            schedule = UserSchedule.objects.get(user_info=UserInfo.objects.get(telegram_id=telegram_id))
-
             current_date = datetime.now()
             day_of_week = current_date.isoweekday()
 
@@ -94,7 +92,6 @@ def send_lunch():
             pass
         telegram_id = user_info['telegram_id']
         try:
-            schedule = UserSchedule.objects.get(user_info=UserInfo.objects.get(telegram_id=telegram_id))
 
             current_date = datetime.now()
             day_of_week = current_date.isoweekday()
@@ -110,7 +107,7 @@ def send_dinner():
             pass
         telegram_id = user_info['telegram_id']
         try:
-            schedule = UserSchedule.objects.get(user_info=UserInfo.objects.get(telegram_id=telegram_id))
+
 
             current_date = datetime.now()
             day_of_week = current_date.isoweekday()
@@ -149,7 +146,9 @@ def login(msg):
 
 @bot.message_handler(commands=['logout'])
 def logout(msg):
-    user_info = UserInfo.objects.get(telegram_id=msg.chat.id)
+    user_info = UserInfo.objects.filter(telegram_id=msg.chat.id)
+    if user_info.exists():
+        user_info = UserInfo.objects.get(telegram_id=msg.chat.id)
     if user_info.telegram_id != 0:
         user_info.telegram_id = 0
         user_info.save()
@@ -180,7 +179,6 @@ def process_password(msg, username):
         try:
             user_info.telegram_id = msg.chat.id
             user_info.save()
-            logged_in_users[chat_id] = user_info  # Store UserInfo instance after successful login
             bot.reply_to(msg, "Login successful! You will now receive meal reminders.")
         except UserInfo.DoesNotExist:
             bot.reply_to(msg, "User information not found.")
@@ -205,9 +203,9 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
         # Schedule the tasks
-        schedule.every().day.at("08:00").do(send_breakfast)
-        schedule.every().day.at("12:00").do(send_lunch)
-        schedule.every().day.at("18:00").do(send_dinner)
+        schedule.every().day.at("13:33").do(send_breakfast)
+        schedule.every().day.at("13:34").do(send_lunch)
+        schedule.every().day.at("13:35").do(send_dinner)
         schedule.every().monday.at("08:30").do(send_shopping_list)
 
         # Start the schedule in a new thread
