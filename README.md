@@ -6,3 +6,6 @@ HOW TO RUN:
 3) In the first terminal at the end you'll find local link to web-site. Click on it and try
 
 THE LAST COMMIT AND PUSH INFORMATION: fixed 2 little bugs that are breaking user experience
+
+HOW TO CHANGE TIME OF NOTIFICATIONS: in nutritions/management/commands/telegram_bot.py 
+go to the 224 line and change time of breakfast, lunch and a dinner
